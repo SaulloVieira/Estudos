@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ritmo ENEM · Cronômetro por questão</title>
+  <meta name="description" content="Treine seu gerenciamento de tempo para o ENEM: 3 minutos e 30 segundos por questão." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏱</text></svg>" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body data-tab="simulado">
+  <header class="topbar">
+    <nav class="tabs" role="tablist" aria-label="Ferramentas">
+      <button id="tab-btn-simulado" class="tab" role="tab" type="button" data-tab="simulado" aria-controls="tab-simulado" aria-selected="true">
+        Simulado<span id="tab-badge" class="tab-badge" hidden></span>
+      </button>
+      <button id="tab-btn-cronograma" class="tab" role="tab" type="button" data-tab="cronograma" aria-controls="tab-cronograma" aria-selected="false">Cronograma</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== Aba Simulado ===== -->
+    <div id="tab-simulado" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-simulado">
+    <!-- Tela inicial -->
+    <section id="screen-home" class="screen">
+      <p class="eyebrow">Ritmo ENEM</p>
+      <h1>Treino de tempo<br />por questão</h1>
+      <p class="lead">Limite ideal de <strong>3:30</strong> por questão. O cronômetro avisa com um bip e continua contando para você saber o tempo real.</p>
+      <button id="btn-start" class="btn btn-primary btn-xl">Começar prova</button>
+      <button id="btn-test-sound" class="btn-link" type="button">🔊 Testar som do alarme</button>
+      <p class="hint">Atalho durante o treino: <kbd>Espaço</kbd> ou <kbd>Enter</kbd> = próxima questão</p>
+    </section>
+
+    <!-- Tela de treino -->
+    <section id="screen-train" class="screen" hidden>
+      <p id="q-label" class="q-label">QUESTÃO 1</p>
+      <p id="timer" class="timer" aria-live="off">00:00</p>
+      <p id="delta" class="delta">03:30 restantes</p>
+      <div class="bar" aria-hidden="true"><div id="bar-fill" class="bar-fill"></div></div>
+      <button id="btn-next" class="btn btn-primary btn-xl">Próxima questão</button>
+      <div class="train-actions">
+        <button id="btn-finish" class="btn btn-ghost">Finalizar prova</button>
+        <button class="btn btn-ghost btn-restart">Reiniciar treino</button>
+      </div>
+      <p id="train-stats" class="train-stats"></p>
+    </section>
+
+    <!-- Relatório -->
+    <section id="screen-report" class="screen report" hidden>
+      <p class="eyebrow">Resultado</p>
+      <h2>Relatório da prova</h2>
+      <div id="report-cards" class="cards"></div>
+      <h3>Tempo por questão</h3>
+      <table class="table">
+        <thead><tr><th>Questão</th><th>Tempo</th><th>vs 3:30</th></tr></thead>
+        <tbody id="report-rows"></tbody>
+      </table>
+      <div class="report-actions">
+        <button class="btn btn-primary btn-restart">Novo treino</button>
+      </div>
+    </section>
+    </div>
+
+    <!-- ===== Aba Cronograma ===== -->
+    <div id="tab-cronograma" class="tab-panel schedule" role="tabpanel" aria-labelledby="tab-btn-cronograma" hidden>
+      <div class="schedule-head">
+        <div>
+          <p class="eyebrow">Planejamento</p>
+          <h2>Cronograma semanal</h2>
+        </div>
+        <button id="btn-edit-schedule" class="btn btn-ghost btn-sm" type="button" aria-pressed="false">✎ Editar cronograma</button>
+      </div>
+      <p id="schedule-edit-hint" class="schedule-hint" hidden>Modo edição · as alterações são salvas automaticamente. <kbd>Enter</kbd> no detalhe cria a próxima atividade.</p>
+      <div id="week" class="week"></div>
+    </div>
+  </main>
+  <script src="/app.js"></script>
+  <script src="/schedule.js"></script>
+</body>
+</html>
